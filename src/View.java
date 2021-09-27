@@ -4,151 +4,58 @@
  * @version 2014-03-13
  */
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-/**
- * @author Georg Dick
- * 
- */
 public class View extends JFrame {
 
     private JPanel contentPane;
-    private JTextField tName;
-    private JTextField tKasse;
-    private JTextField tNaechster;
-    private JButton btnZurBehandlungRufen;
-    private JButton btnPatientAnmelden; 
-    private JTextField tMessung;
-    private JButton btnMessung;
-
     private Controller controller;
-    private JTextField tSprechzimmer;
 
     public View() {
-        setTitle("Arztpraxis V2");
+        setTitle("Quizspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 616, 352);
+        setBounds(100, 100, 450, 350);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblName = new JLabel("Name:");
-        lblName.setBounds(23, 32, 56, 16);
-        contentPane.add(lblName);
+        JLabel lblQuestionTitle = new JLabel("Quizfrage:");
+        lblQuestionTitle.setBounds(20, 20, 100, 16);
+        contentPane.add(lblQuestionTitle);
 
-        tName = new JTextField();
-        tName.setBounds(71, 29, 116, 22);
-        contentPane.add(tName);
-        tName.setColumns(10);
+        JLabel lblQuestionText = new JLabel("Frage erscheint hier");
+        lblQuestionText.setBounds(20, 30, 400, 52);
+        lblQuestionText.setFont(new Font("Dialog", Font.BOLD, 24));
+        contentPane.add(lblQuestionText);
 
-        JLabel lblKasse = new JLabel("Kasse");
-        lblKasse.setBounds(232, 32, 56, 16);
-        contentPane.add(lblKasse);
+        JLabel lblAnswersTitle = new JLabel("Deine Antwortmöglichkeiten:");
+        lblAnswersTitle.setBounds(20, 100, 250, 16);
+        contentPane.add(lblAnswersTitle);
 
-        tKasse = new JTextField();
-        tKasse.setBounds(276, 29, 116, 22);
-        contentPane.add(tKasse);
-        tKasse.setColumns(10);
+        JButton btnAnswer1 = new JButton("Antwortmöglichkeit 1");
+        btnAnswer1.setBounds(20, 120, 400, 25);
+        contentPane.add(btnAnswer1);
 
-        btnPatientAnmelden = new JButton("Patient nur zur Sprechstunde anmelden");
-        btnPatientAnmelden.setBounds(23, 76, 369, 25);
-        contentPane.add(btnPatientAnmelden);
+        JButton btnAnswer2 = new JButton("Antwortmöglichkeit 2");
+        btnAnswer2.setBounds(20, 150, 400, 25);
+        contentPane.add(btnAnswer2);
 
-        JLabel lblNchsterPatient = new JLabel("nächster Patient für die Sprechstunde");
-        lblNchsterPatient.setBounds(23, 163, 369, 16);
-        contentPane.add(lblNchsterPatient);
+        JButton btnAnswer3 = new JButton("Antwortmöglichkeit 3");
+        btnAnswer3.setBounds(20, 180, 400, 25);
+        contentPane.add(btnAnswer3);
 
-        tNaechster = new JTextField();
-        tNaechster.setEditable(false);
-        tNaechster.setBounds(23, 192, 182, 22);
-        contentPane.add(tNaechster);
-        tNaechster.setColumns(10);
-
-        btnZurBehandlungRufen = new JButton("Zur Behandlung rufen");
-        btnZurBehandlungRufen.setEnabled(false);
-        btnZurBehandlungRufen.setBounds(232, 191, 160, 25);
-        contentPane.add(btnZurBehandlungRufen);
-
-        JButton btnPatientZuSprechstunde = new JButton("Patient zu Sprechstunde und Blutdruckmessung anmelden");
-        btnPatientZuSprechstunde.setBounds(23, 116, 369, 23);
-        contentPane.add(btnPatientZuSprechstunde);
-
-        JLabel lblNchsterPatientFr = new JLabel("nächster Patient für die Blutdruckmessung");
-        lblNchsterPatientFr.setBounds(23, 240, 369, 14);
-        contentPane.add(lblNchsterPatientFr);
-
-        tMessung = new JTextField();
-        tMessung.setEditable(false);
-        tMessung.setBounds(23, 274, 182, 20);
-        contentPane.add(tMessung);
-        tMessung.setColumns(10);
-
-        btnMessung = new JButton("Zur Messung rufen");
-        btnMessung.setEnabled(false);
-        btnMessung.setBounds(232, 273, 160, 23);
-        contentPane.add(btnMessung);
-
-        tSprechzimmer = new JTextField();
-        tSprechzimmer.setEditable(false);
-        tSprechzimmer.setBounds(415, 193, 160, 20);
-        contentPane.add(tSprechzimmer);
-        tSprechzimmer.setColumns(10);
-
-        JLabel lblPatientImSprechzimmer = new JLabel("Patient im Sprechzimmer");
-        lblPatientImSprechzimmer.setBounds(415, 164, 160, 14);
-        contentPane.add(lblPatientImSprechzimmer);
+        JButton btnAnswer4 = new JButton("Antwortmöglichkeit 4");
+        btnAnswer4.setBounds(20, 210, 400, 25);
+        contentPane.add(btnAnswer4);
     }
 
     public void setController(
     Controller controller) {
         this.controller = controller;
-    }
-
-    public void setzeNaechster(String naechster) {
-        if (naechster == null || naechster.equals("")||naechster.equals("-")) {
-            tNaechster.setText("-");
-            btnZurBehandlungRufen.setEnabled(false);
-        } else {
-            tNaechster.setText(naechster);
-            btnZurBehandlungRufen.setEnabled(true);
-        }
-    }
-
-    /**
-     * @param naechster
-     */
-    public void setzeNaechsterBD(String naechster) {
-        if (naechster == null || naechster.equals("")||naechster.equals("-")) {
-            tMessung.setText("-");
-            btnMessung.setEnabled(false);
-        } else {
-            tMessung.setText(naechster);
-            btnMessung.setEnabled(true);
-        }
-
-    }
-
-    /**
-     * @param message
-     */
-    public void zeigeMeldung(String message) {
-        JOptionPane.showMessageDialog(this,message);    
-    }
-
-    public void leereSprechzimmer() {
-        tSprechzimmer.setText("leer");    
-    }
-
-    public void setzeInsSprechzimmer(String pat){
-        tSprechzimmer.setText(pat);   
     }
 }
