@@ -18,7 +18,7 @@ public class View extends JFrame {
     public View() {
         setTitle("Quizspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 350);
+        setBounds(100, 100, 440, 430);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -52,6 +52,32 @@ public class View extends JFrame {
         JButton btnAnswer4 = new JButton("Antwortmöglichkeit 4");
         btnAnswer4.setBounds(20, 210, 400, 25);
         contentPane.add(btnAnswer4);
+
+        JButton btnQuestionDetails = new JButton("Details Anzeigen");
+        btnQuestionDetails.setBounds(20, 250, 195, 25);
+        contentPane.add(btnQuestionDetails);
+
+        JButton btnNextQuestion = new JButton("Nächste Frage");
+        btnNextQuestion.setBounds(225, 250, 195, 25);
+        contentPane.add(btnNextQuestion);
+        
+        JLabel lblStatsTitle = new JLabel("Statistiken von <nutzername>:");
+        lblStatsTitle.setBounds(20, 315, 300, 16);
+        contentPane.add(lblStatsTitle);
+
+        JLabel lblStatsText = new JLabel("<%> aller Fragen richtig beantwortet");
+        lblStatsText.setBounds(20, 320, 400, 52);
+        lblStatsText.setFont(new Font("Dialog", Font.BOLD, 18));
+        contentPane.add(lblStatsText);
+
+        JLabel lblStatsSubtext = new JLabel("Insgesamt hast du <var> von <var> Fragen richtig.");
+        lblStatsSubtext.setBounds(20, 355, 400, 16);
+        contentPane.add(lblStatsSubtext);
+
+        JPanel pnlStatsBg = new JPanel();
+        pnlStatsBg.setBounds(0, 300, 440, 100);
+        pnlStatsBg.setBackground(Color.lightGray);
+        contentPane.add(pnlStatsBg);
     }
 
     public void setController(
