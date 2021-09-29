@@ -54,8 +54,7 @@ public class View extends JFrame {
         btnAnswer1.setBounds(20, 120, 400, 25);
         btnAnswer1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                int rightAnswer = controller.getRightAnswer();
-                if (rightAnswer == 1) { lblQuestionText.setText("Richtig!"); }
+                if (controller.checkAnswer(1)) { lblQuestionText.setText("Richtig!"); }
                 else { lblQuestionText.setText("Falsch!"); }
             }
         });
@@ -65,8 +64,7 @@ public class View extends JFrame {
         btnAnswer2.setBounds(20, 150, 400, 25);
         btnAnswer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                int rightAnswer = controller.getRightAnswer();
-                if (rightAnswer == 2) { lblQuestionText.setText("Richtig!"); }
+                if (controller.checkAnswer(2)) { lblQuestionText.setText("Richtig!"); }
                 else { lblQuestionText.setText("Falsch!"); }
             }
         });
@@ -76,8 +74,7 @@ public class View extends JFrame {
         btnAnswer3.setBounds(20, 180, 400, 25);
         btnAnswer3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                int rightAnswer = controller.getRightAnswer();
-                if (rightAnswer == 3) { lblQuestionText.setText("Richtig!"); }
+                if (controller.checkAnswer(3)) { lblQuestionText.setText("Richtig!"); }
                 else { lblQuestionText.setText("Falsch!"); }
             }
         });
@@ -87,8 +84,7 @@ public class View extends JFrame {
         btnAnswer4.setBounds(20, 210, 400, 25);
         btnAnswer4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                int rightAnswer = controller.getRightAnswer();
-                if (rightAnswer == 4) { lblQuestionText.setText("Richtig!"); }
+                if (controller.checkAnswer(4)) { lblQuestionText.setText("Richtig!"); }
                 else { lblQuestionText.setText("Falsch!"); }
             }
         });
@@ -107,6 +103,10 @@ public class View extends JFrame {
                 btnAnswer2.setText(controller.getAnswer2());
                 btnAnswer3.setText(controller.getAnswer3());
                 btnAnswer4.setText(controller.getAnswer4());
+                btnAnswer1.setEnabled(true);
+                btnAnswer2.setEnabled(true);
+                btnAnswer3.setEnabled(true);
+                btnAnswer4.setEnabled(true);
             }
         });
         contentPane.add(btnNextQuestion);

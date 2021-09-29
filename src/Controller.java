@@ -48,6 +48,16 @@ public class Controller {
         return 2;
     }
 
+    public boolean checkAnswer(int answer) {
+        if (answer == 2) {
+            markAnswer(true);
+            return true;
+        } else {
+            markAnswer(false);
+            return false;
+        }
+    }
+
     public void markAnswer(boolean isCorrect) {
         
     }
