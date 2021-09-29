@@ -24,6 +24,19 @@ public class View extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+        /**
+         * Login prompt
+         */
+
+        boolean loggedIn = false;
+        while (!loggedIn) {
+            loggedIn = showLoginPrompt(this);
+        }
+
+        /**
+         * Main GUI
+         */
+
         JLabel lblQuestionTitle = new JLabel("Quizfrage:");
         lblQuestionTitle.setBounds(20, 20, 100, 16);
         contentPane.add(lblQuestionTitle);
@@ -78,6 +91,30 @@ public class View extends JFrame {
         pnlStatsBg.setBounds(0, 300, 440, 100);
         pnlStatsBg.setBackground(Color.lightGray);
         contentPane.add(pnlStatsBg);
+    }
+
+    public boolean showLoginPrompt(final JFrame frame) {
+        String userName = (String)JOptionPane.showInputDialog(
+               frame,
+               "Gebe deinen Nutzernamen ein", 
+               "Quizspiel Auth",            
+               JOptionPane.PLAIN_MESSAGE,
+               null,            
+               null, 
+               "user"
+        );
+
+        String userPass = (String)JOptionPane.showInputDialog(
+               frame,
+               "Gebe dein Passwort ein", 
+               "Quizspiel Auth",            
+               JOptionPane.PLAIN_MESSAGE,
+               null,            
+               null, 
+               "pass"
+        );
+
+        return true;
     }
 
     public void setController(
