@@ -52,18 +52,46 @@ public class View extends JFrame {
 
         JButton btnAnswer1 = new JButton("Antwortmöglichkeit 1");
         btnAnswer1.setBounds(20, 120, 400, 25);
+        btnAnswer1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int rightAnswer = controller.getRightAnswer();
+                if (rightAnswer == 1) { lblQuestionText.setText("Richtig!"); }
+                else { lblQuestionText.setText("Falsch!"); }
+            }
+        });
         contentPane.add(btnAnswer1);
 
         JButton btnAnswer2 = new JButton("Antwortmöglichkeit 2");
         btnAnswer2.setBounds(20, 150, 400, 25);
+        btnAnswer2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int rightAnswer = controller.getRightAnswer();
+                if (rightAnswer == 2) { lblQuestionText.setText("Richtig!"); }
+                else { lblQuestionText.setText("Falsch!"); }
+            }
+        });
         contentPane.add(btnAnswer2);
 
         JButton btnAnswer3 = new JButton("Antwortmöglichkeit 3");
         btnAnswer3.setBounds(20, 180, 400, 25);
+        btnAnswer3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int rightAnswer = controller.getRightAnswer();
+                if (rightAnswer == 3) { lblQuestionText.setText("Richtig!"); }
+                else { lblQuestionText.setText("Falsch!"); }
+            }
+        });
         contentPane.add(btnAnswer3);
 
         JButton btnAnswer4 = new JButton("Antwortmöglichkeit 4");
         btnAnswer4.setBounds(20, 210, 400, 25);
+        btnAnswer4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int rightAnswer = controller.getRightAnswer();
+                if (rightAnswer == 4) { lblQuestionText.setText("Richtig!"); }
+                else { lblQuestionText.setText("Falsch!"); }
+            }
+        });
         contentPane.add(btnAnswer4);
 
         JButton btnQuestionDetails = new JButton("Details Anzeigen");
@@ -72,6 +100,15 @@ public class View extends JFrame {
 
         JButton btnNextQuestion = new JButton("Nächste Frage");
         btnNextQuestion.setBounds(225, 250, 195, 25);
+        btnNextQuestion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                lblQuestionText.setText(controller.getNextQuestion());
+                btnAnswer1.setText(controller.getAnswer1());
+                btnAnswer2.setText(controller.getAnswer2());
+                btnAnswer3.setText(controller.getAnswer3());
+                btnAnswer4.setText(controller.getAnswer4());
+            }
+        });
         contentPane.add(btnNextQuestion);
         
         JLabel lblStatsTitle = new JLabel("Statistiken von <nutzername>:");
